@@ -1,0 +1,47 @@
+$font: sans-serif, sans-serif;
+$font-size: 16px;
+$font-color: #FFF;
+$bg-color: #2B3A42;
+$dark: #1D78C1;
+$light: #8DD6F9;
+
+html {
+  font: {
+    family: $font;
+    size: $font-size;
+  }
+  color: $font-color;
+  background: {
+    color: $bg-color;
+    // image: url('./img/webpack-cube.svg');
+    repeat: repeat;
+    position: center;
+    attachment: fixed;
+    size: 10%;
+  }
+}
+
+body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .75);
+}
+
+a {
+  display: block;
+  font-size: 4vw;
+  color: $font-color;
+  transition: all .3s ease-out;
+
+  &:hover { color: $light; }
+}
+
+img {
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
