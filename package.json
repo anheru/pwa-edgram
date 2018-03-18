@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Un kit para iniciar proyectos frontend con Vanilla JS y/o React y la filosofía de los componentes web, configurado y automatizado con Webpack.",
   "main": "src/index.js",
-  "browserslist": [ "> 5%", "ie > 10" ],
+  "browserslist": [
+    "> 5%",
+    "ie > 10"
+  ],
   "scripts": {
     "dev": "webpack -d --watch --colors",
     "prod": "webpack -p",
@@ -42,6 +45,7 @@
     "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
+    "firebase": "^4.11.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
