@@ -1,6 +1,8 @@
 import firebase from 'firebase'
-import {progressBar, progressStatus, showProgress} from './upload_progress'
+import {progressBar, progressStatus, showProgress, hideProgress} from './upload_progress'
 import {errorMsg, successMsg} from './helpers/messages'
+import {savePhotoInDB} from './helpers/photos_db'
+
 const uploader = () => {
   const d = document,
     c = console.log
@@ -28,9 +30,17 @@ const uploader = () => {
             }, err => {
               c(err, err.code, err.message)
               output.innerHTML = errorMsg(`${err.message}`, err)
-            })
+            }, () => {
+              storageRef.child(file.name).getDownloadURL()
+                .then(url => {
+                  output.insertAdjacentHTML('afterbegin', `${successMsg('Tú foto se ha subido')}
+                  <img src="${url}"/>` )
 
-            output.innerHTML = successMsg('Tu archivo se ha subido')
+                  savePhotoInDB(url, user)
+                  hideProgress()
+                })
+                .catch(err => output.innerHTML = errorMsg(`${err.message}`, err))
+            })
           } else {
             output.innerHTML = errorMsg('Tu archivo debe ser una imagen', null)
           }
@@ -41,12 +51,12 @@ const uploader = () => {
     }
   }, 100)
   return `
-    <article class="Uploader Content-section u-show">
+    <article class="Uploader Content-section u-hide">
       <h2 class="u-title">Sube tus Fotos</h2>
       <form name="upload" id="upload">
         <input type="file" id="uploader" multiple/>
         <label for="uploader">
-          <i class="fa fa-cloud-upload" title" title="Subir Foto(s)"></i>
+          <i class="fa fa-cloud-upload" title="Subir Foto(s)"></i>
         </label>
       </form>
 

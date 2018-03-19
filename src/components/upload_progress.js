@@ -22,3 +22,12 @@ export const progressStatus = (data) => {
 }
 
 export const showProgress = () => document.querySelectorAll('.Progress').forEach(bar => bar.classList.remove('u-hide'))
+export const hideProgress = () => document.querySelectorAll('.Progress').forEach(bar => bar.classList.add('u-hide'))
+
+export const clearProgress = () => {
+  const d = document
+
+  d.querySelectorAll('.Progress-output').forEach(output => output.innerHTML = '')
+  d.querySelectorAll('.Progress-bar').forEach(bar => bar.value = 0)
+  d.querySelectorAll('.Progress-advance').forEach(advance => advance.innerHTML = '')
+}
