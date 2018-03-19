@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import app from './app'
+import { pwa, isOnline } from './helpers/init'
 
 const d = document,
   c = console.log
@@ -57,10 +58,13 @@ export const isAuth = () => {
 
     if (user) {
       EDgram.innerHTML = app()
-      c('Usuario Autenticado')
+      EDgram.classList.add('u-jc-flex-start')
+      pwa()
     } else {
       EDgram.innerHTML = signIn()
-      c('Usuario NO Autenticado')
+      EDgram.classList.remove('u-jc-flex-start')
     }
+
+    isOnline()
   })
 }

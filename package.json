@@ -1,7 +1,7 @@
 {
-  "name": "webpack-multi-starter-kit",
+  "name": "edgram",
   "version": "1.0.0",
-  "description": "Un kit para iniciar proyectos frontend con Vanilla JS y/o React y la filosofía de los componentes web, configurado y automatizado con Webpack.",
+  "description": "Aplicación Web Progresiva inspirada en Instagram con fines educativos.",
   "main": "src/index.js",
   "browserslist": [
     "> 5%",
