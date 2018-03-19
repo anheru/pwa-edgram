@@ -53,8 +53,7 @@ export const signOut = () => {
 export const isAuth = () => {
   firebase.auth().onAuthStateChanged(user => {
     const EDgram = d.querySelector('.EDgram')
-
-    c(user)
+    // c(user)
 
     if (user) {
       EDgram.innerHTML = app()

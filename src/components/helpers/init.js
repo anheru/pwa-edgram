@@ -33,15 +33,15 @@ export const pwa = () => {
   }
 
   // Activar Notificaciones
-  if (window.Notification && Notification.permission !== 'denied') {
-    Notification.requestPermission(status => {
-      c(status)
-      let n = new Notification('Título', {
-        body: 'Soy una notificación :)',
-        icon: './icon_192x192.png'
-      })
-    })
-  }
+  // if (window.Notification && Notification.permission !== 'denied') {
+  //   Notification.requestPermission(status => {
+  //     c(status)
+  //     let n = new Notification('Título', {
+  //       body: 'Soy una notificación :)',
+  //       icon: './icon_192x192.png'
+  //     })
+  //   })
+  // }
 
   // Activar Sincronización de Fondo
   if ('serviceWorker' in n && 'SyncManager' in w) {
@@ -86,4 +86,16 @@ export const isOnline = () => {
     w.addEventListener('online', networkStatus)
     w.addEventListener('offline', networkStatus)
   })
+}
+
+export const ga = () => {
+  const _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-115989159-1']);
+  _gaq.push(['_setDomainName', 'anheru.github.io/pwa-edgram/public']);
+  _gaq.push(['_trackPageview']);
+  (function () {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 }

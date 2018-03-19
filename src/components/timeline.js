@@ -5,8 +5,16 @@ const timeline = () => {
     c = console.log,
     dbRef = firebase.database().ref().child('photos')
 
-  function photoTemplate(obj) {
-    return `
+  let photos
+
+  const timelineScripts = setInterval(() => {
+    if (d.readyState === 'complete') {
+      clearInterval(timelineScripts)
+
+      const timelinePhotos = d.querySelector('.Timeline-photos')
+
+      function photoTemplate(obj) {
+        return `
           <figure class="Photo">
             <img class="Photo-image" src="${obj.photoUrl}">
             <figcaption class="Photo-author">
@@ -15,20 +23,14 @@ const timeline = () => {
             </figcaption>
           </figure>
         `
-  }
-
-  const timelineScripts = setInterval(() => {
-    if (d.readyState === 'complete') {
-      clearInterval(timelineScripts)
-      const timelinePhotos = d.querySelector('.Timeline-photos')
+      }
 
       dbRef.once('value', data => {
         data.forEach(photo => {
-          timelinePhotos.insertAdjacentHTML(
-            'afterbegin',
-            photoTemplate(photo.val())
-          )
+          photos = photoTemplate(photo.val()) + photos
         })
+
+        timelinePhotos.innerHTML = photos
       })
 
       dbRef.on('child_added', data => {
@@ -39,6 +41,7 @@ const timeline = () => {
       })
     }
   }, 100)
+
   return `
     <article class="Timeline Content-section u-show">
       <aside class="Timeline-photos"></aside>
