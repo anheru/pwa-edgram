@@ -41,7 +41,6 @@ const timeline = () => {
   }, 100)
   return `
     <article class="Timeline Content-section u-show">
-      <h2>Timeline</h2>
       <aside class="Timeline-photos"></aside>
     </article>
   `
